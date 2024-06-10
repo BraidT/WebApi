@@ -1,0 +1,25 @@
+<div *ngIf="events.length > 0; else noEvents">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Begin Time</th>
+          <th>Location</th>
+          <th>Additional Info</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let event of events">
+          <td>{{ event.id }}</td>
+          <td>{{ event.name }}</td>
+          <td>{{ event.beginTime | date: 'short' }}</td>
+          <td>{{ event.location }}</td>
+          <td>{{ event.additionalInfo }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <ng-template #noEvents>
+    <p>No events available.</p>
+  </ng-template>
