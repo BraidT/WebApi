@@ -1,0 +1,31 @@
+ <div class="content-container">
+    <div class="picture-row">
+      <img src="../../assets/avaleht.jpg" alt="Park Bench">
+    </div>
+  
+    <div class="events-container">
+      <div class="panel future-events">
+        <h3>Tulevased üritused</h3>
+        <table>
+          <tr *ngFor="let event of futureEvents">
+            <td>{{ event.name }}</td>
+            <td>{{ event.beginTime | date:'dd.MM.yyyy' }}</td>
+            <td><button (click)="viewParticipants(event.id)">Osavõtjad</button></td>
+            <td><button (click)="deleteEvent(event.id)">X</button></td>
+          </tr>
+        </table>
+        <button (click)="navigateToAddEvent()">LISA ÜRITUS</button>
+      </div>
+  
+      <div class="panel past-events">
+        <h3>Toimunud üritused</h3>
+        <table>
+          <tr *ngFor="let event of pastEvents">
+            <td>{{ event.name }}</td>
+            <td>{{ event.beginTime | date:'dd.MM.yyyy' }}</td>
+            <button (click)="viewParticipants(event.id)">Osavõtjad</button>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>

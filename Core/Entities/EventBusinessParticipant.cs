@@ -8,5 +8,6 @@ namespace Core.Entities {
         public BusinessParticipant BusinessParticipant { get; set; }
         public string AdditionalInfo { get; set; }
         public PaymentTypeEnum PaymentType { get; set; }
+        public int? ParticipantCount { get; set; }
     }
 }

@@ -1,0 +1,57 @@
+.custom-toolbar {
+    display: flex;
+    justify-content: space-between; /* Spread the items across the toolbar */
+    align-items: center; /* Center items vertically */
+    background-color: #ffffff; /* White background for the toolbar */
+    border-bottom: 1px solid #cccccc; /* Light grey bottom border */
+    padding: 0 20px; /* Add some padding to the sides */
+}
+
+.toolbar-logo img,
+.toolbar-symbol img {
+    height: 40px; /* Adjust the size of the images as needed */
+    display: block; /* Ensure the SVGs are displayed as block elements */
+}
+
+.toolbar-title {
+    font-family: 'Arial', sans-serif; /* Font style matching the image */
+    font-size: 18px; /* Adjust font size to match the image */
+    font-weight: bold; /* Make the font bold */
+    color: #0056b3; /* Dark blue font color */
+    margin: 0 15px; /* Spacing between the links */
+}
+
+.toolbar-title a {
+    text-decoration: none; /* Remove underline from links */
+    color: inherit; /* Inherit color from parent */
+    padding: 10px 15px; /* Add padding for better click area */
+}
+
+.toolbar-title a.active-link {
+    background-color: #0056b3; /* Blue background for active link */
+    color: #ffffff; /* White text for active link */
+    border-radius: 4px; /* Rounded corners for active link */
+}
+
+.top-panel {
+    background-color: #ffffff; /* White background for the top panel */
+    border-bottom: 1px solid #cccccc; /* Light grey bottom border */
+}
+
+.mat-toolbar.mat-primary {
+    background-color: transparent; /* Remove background color from mat-toolbar */
+}
+
+.mat-button {
+    font-family: 'Arial', sans-serif; /* Match the font style of the image */
+    font-size: 16px; /* Adjust font size to match the image */
+    font-weight: bold; /* Make the font bold */
+    color: #0056b3; /* Dark blue font color */
+    margin: 0 10px; /* Adjust margin between the buttons */
+    text-transform: none; /* Remove uppercase transformation */
+}
+
+.mat-button:hover {
+    background-color: transparent; /* Remove hover background color */
+    color: #0056b3; /* Dark blue font color on hover */
+}

@@ -15,7 +15,7 @@ namespace Infrastructure.FluentConfig {
                          .WithMany(bp => bp.EventBusinessParticipants)
                          .HasForeignKey(ep => ep.BusinessParticipantId)
                          .OnDelete(DeleteBehavior.Cascade);
-            builder.Property(b => b.AdditionalInfo).HasMaxLength(50000);
+            builder.Property(b => b.AdditionalInfo).HasMaxLength(5000);
             builder.Property(b => b.PaymentType).IsRequired();
         }
     }

@@ -1,14 +1,8 @@
 ﻿using Application.Commands.Events;
-using Application.Exceptions;
 using Application.Responses;
 using AutoMapper;
 using Core.Repositories;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Handlers.Events {
     public class CreateEventHandler : IRequestHandler<CreateEventCommand, EventResponse> {

@@ -10,7 +10,7 @@ namespace WebApi.Controllers {
     
     [ApiController]
     [Route("api/[controller]")]
-    public class EventsController: ControllerBase {
+    public class EventsController : ControllerBase {
 
         private readonly IMediator _mediator;
 
@@ -33,6 +33,36 @@ namespace WebApi.Controllers {
 
         [HttpPut]
         public async Task<ActionResult<List<EventResponse>>> UpdateEvent(UpdateEventCommand command) {
+            try {
+                var result = await _mediator.Send(command);
+                return Ok(result);
+            }
+            catch (EntityNotFoundException ex) {
+                return NotFound();
+            }
+        }
+
+        [HttpDelete]
+        public async Task<ActionResult<List<EventResponse>>> DeleteEvent(DeleteEventCommand command) {
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
+
+        [HttpPost]
+        [Route("[action]", Name = "AddBusinessParticipant")]
+        public async Task<ActionResult<List<BusinessParticipantResponse>>> AddBusinessParticipant(AddBusinessParticipantCommand command) {
+            try {
+                var result = await _mediator.Send(command);
+                return Ok(result);
+            }
+            catch (EntityNotFoundException ex) {
+                return NotFound();
+            }
+        }
+
+        [HttpPost]
+        [Route("[action]", Name = "AddPrivateParticipant")]
+        public async Task<ActionResult<List<BusinessParticipantResponse>>> AddPrivateParticipant(AddPrivateParticipantCommand command) {
             try {
                 var result = await _mediator.Send(command);
                 return Ok(result);

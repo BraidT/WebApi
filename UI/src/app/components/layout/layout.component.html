@@ -1,0 +1,36 @@
+<div class="top-panel">
+    <mat-toolbar color="primary" class="custom-toolbar">
+        <span class="toolbar-logo">
+            <img src="../../assets/public/logo.svg" alt="Logo">
+        </span>
+        <div class="toolbar-menu">
+            <span class="toolbar-title">
+                <a mat-button routerLink="/home" routerLinkActive="active-link">AVALEHT</a>
+            </span>
+            <span class="toolbar-title">
+                <a mat-button routerLink="/add-event" routerLinkActive="active-link">ÜRITUSE LISAMINE</a>
+            </span>
+        </div>
+        <span class="toolbar-symbol">
+            <img src="../../assets/public/symbol.svg" alt="Symbol">
+        </span>
+    </mat-toolbar>
+</div>
+<div class="main-content">
+    <router-outlet></router-outlet>
+</div>
+<div class="footer">
+    <div class="footer-section">
+      <h4>Curabitur</h4>
+      <p>Emauris Krfingilla Oin magna sem Kelementum</p>
+    </div>
+    <div class="footer-section">
+      <h4>Fusce</h4>
+      <p>Ecconsectetur Ksollicitudin Omvulputate Nunc fringilla tellu</p>
+    </div>
+    <div class="footer-section">
+      <h4>Kontakt</h4>
+      <p>Peakonor: Tallinnas Väike- Ameerika 1, 11415 Tallinn Telefon: 605 4450 Faks: 605 3186</p>
+      <p>Harukontor: Võrus Oja tn 7 (külastusaadress) Telefon: 605 3330 Faks: 605 3155</p>
+    </div>
+</div>

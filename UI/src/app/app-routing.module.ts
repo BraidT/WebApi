@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { EventListComponent } from './event-list/event-list.component';
+import { HomeComponent } from './components/home/home.component';
+import { AddEventComponent } from './components/add-event/add-event.component';
+import { EventParticipantsComponent } from './components/event-participants/event-participants.component';
 
 const routes: Routes = [
-  { path: 'events', component: EventListComponent },
-  { path: '', redirectTo: '/events', pathMatch: 'full' },
-  { path: '**', redirectTo: '/events' }
+  { path: 'home', component: HomeComponent },
+  { path: 'add-event', component: AddEventComponent },
+  { path: 'participants/:eventId', component: EventParticipantsComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' } // Redirect to home by default
 ];
 
 @NgModule({

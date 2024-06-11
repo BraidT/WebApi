@@ -30,10 +30,20 @@ namespace Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("AdditionalInfo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<int?>("ParticipantCount")
+                        .HasColumnType("int");
+
+                    b.Property<byte>("PaymentType")
+                        .HasColumnType("tinyint");
 
                     b.Property<string>("RegistryCode")
                         .IsRequired()
@@ -89,13 +99,16 @@ namespace Infrastructure.Migrations
 
                     b.Property<string>("AdditionalInfo")
                         .IsRequired()
-                        .HasMaxLength(50000)
+                        .HasMaxLength(5000)
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("BusinessParticipantId")
                         .HasColumnType("int");
 
                     b.Property<int>("EventId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ParticipantCount")
                         .HasColumnType("int");
 
                     b.Property<byte>("PaymentType")
@@ -148,6 +161,10 @@ namespace Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("AdditionalInfo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -157,6 +174,9 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<byte>("PaymentType")
+                        .HasColumnType("tinyint");
 
                     b.Property<string>("PersonalCode")
                         .IsRequired()

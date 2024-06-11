@@ -1,0 +1,23 @@
+<div class="event-container">
+    <h2>Ürituse lisamine</h2>
+    <img src="../assets/lisayritus.jpg" alt="Lilled" class="event-image">
+    <form (ngSubmit)="saveEvent()">
+      <div>
+        <label for="name">Ürituse nimi:</label>
+        <input id="name" [(ngModel)]="event.name" name="name" required>
+      </div>
+      <div>
+        <label for="beginTime">Toimumisaeg:</label>
+        <input id="beginTime" type="datetime-local" [(ngModel)]="event.beginTime" name="beginTime" required>
+      </div>
+      <div>
+        <label for="location">Koht:</label>
+        <input id="location" [(ngModel)]="event.location" name="location" required>
+      </div>
+      <div>
+        <label for="additionalInfo">Lisainfo:</label>
+        <textarea id="additionalInfo" [(ngModel)]="event.additionalInfo" name="additionalInfo"></textarea>
+      </div>
+      <button type="submit">Lisa</button>
+    </form>
+  </div>
