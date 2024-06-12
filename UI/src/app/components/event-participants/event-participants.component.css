@@ -1,0 +1,54 @@
+.top-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .top-container-left-panel{
+    background-color: #005bab;
+    width: 25%;
+    height: 60px;
+    margin-top: -8px;
+  }
+  
+  .top-container-left-panel h3 {
+    margin: 0;
+    color: white;
+    padding: 8px;
+  }
+
+  .top-container-right-panel{
+    width: 75%;
+  }
+  
+  .top-container-right-panel .event-image {
+    width: 100%;
+    height: 60px;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 16px;
+  }
+  
+  .mat-mdc-card-title{
+    padding: 20px;
+  }
+
+  .event-detail {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .event-detail mat-label {
+    margin-right: 8px;
+    min-width: 150px;
+  }
+
+  .full-width {
+    display: block;
+    width: 100%;
+  }

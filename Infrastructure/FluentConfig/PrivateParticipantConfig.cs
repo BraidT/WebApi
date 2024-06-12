@@ -8,9 +8,10 @@ namespace Infrastructure.FluentConfig {
             builder.HasKey(e => e.Id);
             builder.Property(b => b.Id).ValueGeneratedOnAdd();
 
-            builder.Property(b => b.FirstName).HasMaxLength(50);
-            builder.Property(b => b.LastName).HasMaxLength(50);
-            builder.Property(b => b.PersonalCode).HasMaxLength(11);
+            builder.Property(b => b.FirstName).HasMaxLength(50).IsRequired();
+            builder.Property(b => b.LastName).HasMaxLength(50).IsRequired();
+            builder.Property(b => b.PersonalCode).HasMaxLength(11).IsRequired();
+            builder.HasIndex(b => b.PersonalCode).IsUnique().HasDatabaseName("IX_PersonalCode");
         }
     }
 }

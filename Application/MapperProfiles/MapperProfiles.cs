@@ -25,6 +25,9 @@ namespace Application.MapperProfiles
             CreateMap<BusinessParticipant, CreateBusinessParticipantCommand>().ReverseMap();
             CreateMap<BusinessParticipant, UpdateBusinessParticipantCommand>().ReverseMap();
 
+            CreateMap<EventPrivateParticipant, CreateEventPrivateParticipantCommand>().ReverseMap();
+            CreateMap<EventBusinessParticipant, CreateEventBusinessParticipantCommand>().ReverseMap();
+
             CreateMap<EventBusinessParticipant, BusinessParticipant>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore())
                 .ReverseMap()
@@ -39,10 +42,22 @@ namespace Application.MapperProfiles
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.BusinessParticipant.Name))
                 .ForMember(dest => dest.RegistryCode, opt => opt.MapFrom(src => src.BusinessParticipant.RegistryCode));
 
+            CreateMap<EventBusinessParticipant, EventBusinessParticipantResponse>()
+                .ForMember(dest => dest.ParticipantCount, opt => opt.MapFrom(src => src.ParticipantCount))
+                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.BusinessParticipant.Name))
+                .ForMember(dest => dest.RegistryCode, opt => opt.MapFrom(src => src.BusinessParticipant.RegistryCode));
+
             CreateMap<EventPrivateParticipant, PrivateParticipantResponse>()
                 .ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.PrivateParticipant.FirstName))
                 .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.PrivateParticipant.LastName))
                 .ForMember(dest => dest.PersonalCode, opt => opt.MapFrom(src => src.PrivateParticipant.PersonalCode));
+
+            CreateMap<EventPrivateParticipant, EventPrivateParticipantResponse>()
+                .ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.PrivateParticipant.FirstName))
+                .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.PrivateParticipant.LastName))
+                .ForMember(dest => dest.PersonalCode, opt => opt.MapFrom(src => src.PrivateParticipant.PersonalCode));
+
+            
         }
     }
 }

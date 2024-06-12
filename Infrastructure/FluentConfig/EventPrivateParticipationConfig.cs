@@ -16,8 +16,11 @@ namespace Infrastructure.FluentConfig {
                          .WithMany(bp => bp.EventPrivateParticipants)
                          .HasForeignKey(ep => ep.PrivateParticipantId)
                          .OnDelete(DeleteBehavior.Cascade);
-            builder.Property(b => b.AdditionalInfo).HasMaxLength(1500);
+            builder.Property(b => b.AdditionalInfo).HasMaxLength(1500).IsRequired();
             builder.Property(b => b.PaymentType).IsRequired();
+
+            builder.HasIndex(ep => ep.EventId);
+            builder.HasIndex(ep => ep.PrivateParticipantId);
         }
     }
 }

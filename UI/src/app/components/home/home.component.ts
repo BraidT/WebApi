@@ -11,10 +11,15 @@ import { Router } from '@angular/router';
 export class HomeComponent {
   futureEvents: EventResponse[] = [];
   pastEvents: EventResponse[] = [];
-
+  displayedColumns: string[] = ['name', 'date', 'actions'];
+  
   constructor(private eventService: EventService, private router: Router) {}
 
   ngOnInit(): void {
+    this.loadEvents();
+  }
+
+  loadEvents(): void {
     this.eventService.getAllEvents().subscribe(events => {
       const now = new Date();
       this.futureEvents = events.filter(event => new Date(event.beginTime) > now);
@@ -23,12 +28,14 @@ export class HomeComponent {
   }
 
   deleteEvent(eventId: number): void {
-    this.eventService.deleteEvent(eventId).subscribe();
-    console.log(`Delete event with ID: ${eventId}`);
+    this.eventService.deleteEvent(eventId).subscribe(() => {
+      console.log(`Delete event with ID: ${eventId}`);
+      this.loadEvents();
+    });
   }
 
   navigateToAddEvent(): void {
-    this.router.navigate(['/add-event']);
+    this.router.navigate(['/event']);
   }
 
   viewParticipants(eventId: number): void {

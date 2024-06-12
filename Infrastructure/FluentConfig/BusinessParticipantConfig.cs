@@ -8,8 +8,10 @@ namespace Infrastructure.FluentConfig {
             builder.HasKey(b => b.Id);
             builder.Property(b => b.Id).ValueGeneratedOnAdd();
 
-            builder.Property(b => b.Name).HasMaxLength(100);
-            builder.Property(b => b.RegistryCode).HasMaxLength(20);
+            builder.Property(b => b.Name).HasMaxLength(100).IsRequired();
+            builder.Property(b => b.RegistryCode).HasMaxLength(20).IsRequired();
+            builder.Property(b => b.AdditionalInfo).HasMaxLength(5000).IsRequired();
+            builder.Property(b => b.PaymentType).IsRequired();
         }
     }
 }

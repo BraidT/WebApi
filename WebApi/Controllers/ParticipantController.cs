@@ -1,5 +1,7 @@
-﻿using Application.Commands.Participants;
+﻿using Application.Commands.Events;
+using Application.Commands.Participants;
 using Application.Exceptions;
+using Application.Queries.Participations;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,6 +14,30 @@ namespace WebApi.Controllers {
 
         public ParticipantController(IMediator mediator) {
             _mediator = mediator;
+        }
+
+        [HttpGet("business/{participantId}")]
+        public async Task<ActionResult> GetBusinessParticipant(int participantId) {
+            var result = await _mediator.Send(new GetBusinessParticipantQuery(participantId));
+            return Ok(result);
+        }
+
+        [HttpGet("private/{participantId}")]
+        public async Task<ActionResult> GetPrivateParticipant(int participantId) {
+            var result = await _mediator.Send(new GetPrivateParticipantQuery(participantId));
+            return Ok(result);
+        }
+
+        [HttpGet("business/getbyevent/{eventId}")]
+        public async Task<ActionResult> GetEventBusinessParticipants(int eventId) {
+            var result = await _mediator.Send(new GetEventBusinessParticipantsQuery(eventId));
+            return Ok(result);
+        }
+
+        [HttpGet("private/getbyevent/{eventId}")]
+        public async Task<ActionResult> GetEventPrivateParticipants(int eventId) {
+            var result = await _mediator.Send(new GetEventPrivateParticipantsQuery(eventId));
+            return Ok(result);
         }
 
         [HttpPost]
@@ -36,7 +62,7 @@ namespace WebApi.Controllers {
                 return Ok(result);
             }
             catch (EntityNotFoundException ex) {
-                return NotFound();
+                return NotFound(ex.Message);
             }
         }
 
@@ -48,8 +74,15 @@ namespace WebApi.Controllers {
                 return Ok(result);
             }
             catch (EntityNotFoundException ex) {
-                return NotFound();
+                return NotFound(ex.Message);
             }
+        }
+
+        [HttpGet]
+        [Route("[action]")]
+        public async Task<IActionResult> Search([FromQuery] string searchTerm) {
+            var result = await _mediator.Send(new SearchParticipantsQuery(searchTerm)).ConfigureAwait(false);
+            return Ok(result);
         }
     }
 }

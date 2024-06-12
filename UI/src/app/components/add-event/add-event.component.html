@@ -1,23 +1,40 @@
-<div class="event-container">
-    <h2>Ürituse lisamine</h2>
-    <img src="../assets/lisayritus.jpg" alt="Lilled" class="event-image">
-    <form (ngSubmit)="saveEvent()">
-      <div>
-        <label for="name">Ürituse nimi:</label>
-        <input id="name" [(ngModel)]="event.name" name="name" required>
-      </div>
-      <div>
-        <label for="beginTime">Toimumisaeg:</label>
-        <input id="beginTime" type="datetime-local" [(ngModel)]="event.beginTime" name="beginTime" required>
-      </div>
-      <div>
-        <label for="location">Koht:</label>
-        <input id="location" [(ngModel)]="event.location" name="location" required>
-      </div>
-      <div>
-        <label for="additionalInfo">Lisainfo:</label>
-        <textarea id="additionalInfo" [(ngModel)]="event.additionalInfo" name="additionalInfo"></textarea>
-      </div>
-      <button type="submit">Lisa</button>
-    </form>
+<div class="top-container">
+  <div class="top-container-left-panel">
+    <h3>Ürituse lisamine</h3>
   </div>
+  <div class="top-container-right-panel">
+    <img src="/assets/libled.jpg" alt="Lilled" class="event-image">
+  </div>
+</div>
+<div class="event-container">
+  <h2>Ürituse lisamine</h2>
+  <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill">
+      <mat-label>Ürituse nimi</mat-label>
+      <input matInput formControlName="name" required>
+      <mat-error *ngIf="eventForm.get('name')?.hasError('required')">Nimi on kohustuslik</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Toimumisaeg</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="beginTime" required>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="eventForm.get('beginTime')?.hasError('required')">Toimumisaeg on kohustuslik</mat-error>
+      <mat-error *ngIf="eventForm.get('beginTime')?.hasError('futureDate')">Toimumisaeg peab olema tulevikus</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Koht</mat-label>
+      <input matInput formControlName="location" required>
+      <mat-error *ngIf="eventForm.get('location')?.hasError('required')">Koht on kohustuslik</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Lisainfo</mat-label>
+      <textarea matInput formControlName="additionalInfo"></textarea>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="!eventForm.valid">Lisa</button>
+  </form>
+</div>

@@ -1,4 +1,5 @@
 ﻿using Application.Commands.Events;
+using Application.Exceptions;
 using Application.Responses;
 using AutoMapper;
 using Core.Repositories;
@@ -16,6 +17,10 @@ namespace Application.Handlers.Events {
         }
 
         public async Task<EventResponse> Handle(CreateEventCommand request, CancellationToken cancellationToken) {
+            if (request.BeginTime < DateTime.Now) {
+                throw new BadRequestException("Algusaeg peab olema tulevikus");
+            }
+
             var newEvent = _mapper.Map<Core.Entities.Event>(request);
             await _eventRepository.Add(newEvent);
             var eventResponse = _mapper.Map<EventResponse>(newEvent);

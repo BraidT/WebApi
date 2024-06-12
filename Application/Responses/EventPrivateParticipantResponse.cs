@@ -1,9 +1,9 @@
 ﻿using Core.Enums;
-using MediatR;
 
-namespace Application.Commands.Participants {
-    public class UpdatePrivateParticipantCommand : IRequest<Unit> {
+namespace Application.Responses {
+    public class EventPrivateParticipantResponse {
         public int Id { get; set; }
+        public int EventId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string PersonalCode { get; set; }

@@ -25,26 +25,41 @@ namespace WebApi.Controllers {
             return Ok(result);
         }
 
-        [HttpPost]
-        public async Task<ActionResult<List<EventResponse>>> CreateEvent(CreateEventCommand command) {
-             var result = await _mediator.Send(command);
-             return Ok(result);
+        [HttpGet("{id}")]
+        public async Task<ActionResult<EventResponse>> Get(int id) {
+            var query = new GetEventQuery() { Id = id };
+            var result = await _mediator.Send(query);
+            return Ok(result);
         }
 
-        [HttpPut]
-        public async Task<ActionResult<List<EventResponse>>> UpdateEvent(UpdateEventCommand command) {
+        [HttpPost]
+        public async Task<ActionResult<EventResponse>> CreateEvent(CreateEventCommand command) {
             try {
                 var result = await _mediator.Send(command);
                 return Ok(result);
             }
-            catch (EntityNotFoundException ex) {
-                return NotFound();
+            catch (BadRequestException ex) {
+                return BadRequest(ex.Message);
             }
         }
 
-        [HttpDelete]
-        public async Task<ActionResult<List<EventResponse>>> DeleteEvent(DeleteEventCommand command) {
-            var result = await _mediator.Send(command);
+        [HttpPut]
+        public async Task<ActionResult> UpdateEvent(UpdateEventCommand command) {
+            try {
+                var result = await _mediator.Send(command);
+                return Ok(result);
+            }
+            catch (BadRequestException ex) {
+                return BadRequest(ex.Message);
+            }
+            catch (EntityNotFoundException ex) {
+                return NotFound(ex.Message);
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteEvent(int id) {
+            var result = await _mediator.Send(new DeleteEventCommand(id));
             return Ok(result);
         }
 
@@ -56,7 +71,7 @@ namespace WebApi.Controllers {
                 return Ok(result);
             }
             catch (EntityNotFoundException ex) {
-                return NotFound();
+                return NotFound(ex.Message);
             }
         }
 
@@ -68,7 +83,7 @@ namespace WebApi.Controllers {
                 return Ok(result);
             }
             catch (EntityNotFoundException ex) {
-                return NotFound();
+                return NotFound(ex.Message);
             }
         }
     }

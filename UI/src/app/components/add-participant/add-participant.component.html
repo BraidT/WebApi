@@ -1,0 +1,63 @@
+<div class="container">
+  <h2>Osavõtjate lisamine</h2>
+  <form [formGroup]="participantForm" (ngSubmit)="onSubmit()">
+    <mat-radio-group formControlName="participantType" (change)="onParticipantTypeChange()">
+      <mat-radio-button value="private">Eraisik</mat-radio-button>
+      <mat-radio-button value="business">Ettevõte</mat-radio-button>
+    </mat-radio-group>
+
+    <div *ngIf="participantForm.get('participantType')?.value === 'private'" formGroupName="privateParticipant">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Eesnimi</mat-label>
+        <input matInput formControlName="firstName">
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Perenimi</mat-label>
+        <input matInput formControlName="lastName">
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Isikukood</mat-label>
+        <input matInput formControlName="personalCode">
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Payment Type</mat-label>
+        <mat-select formControlName="paymentType">
+          <mat-option [value]="1">Cash</mat-option>
+          <mat-option [value]="2">Card</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Lisainfo</mat-label>
+        <textarea matInput formControlName="additionalInfo"></textarea>
+      </mat-form-field>
+    </div>
+
+    <div *ngIf="participantForm.get('participantType')?.value === 'business'" formGroupName="businessParticipant">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name">
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Registry Code</mat-label>
+        <input matInput formControlName="registryCode">
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Payment Type</mat-label>
+        <mat-select formControlName="paymentType">
+          <mat-option [value]="1">Cash</mat-option>
+          <mat-option [value]="2">Card</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Additional Info</mat-label>
+        <textarea matInput formControlName="additionalInfo"></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Person Count</mat-label>
+        <input matInput type="number" formControlName="personCount">
+      </mat-form-field>
+    </div>
+
+    <button mat-raised-button type="submit">Salvesta</button>
+  </form>
+</div>

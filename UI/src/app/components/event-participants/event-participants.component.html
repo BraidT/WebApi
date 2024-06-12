@@ -1,1 +1,84 @@
-<p>event-participants works!</p>
+<div class="top-container">
+  <div class="top-container-left-panel">
+    <h3>Osavõtjad</h3>
+  </div>
+  <div class="top-container-right-panel">
+    <img src="/assets/libled.jpg" alt="Lilled" class="event-image">
+  </div>
+</div>
+
+<div class="container" *ngIf="event$ | async as event">
+  <mat-card>
+    <mat-card-title>Osavõtjad</mat-card-title>
+    <mat-card-content>
+      <div class="event-detail">
+        <mat-label>Ürituse nimi:</mat-label>
+        <p>{{ event.name }}</p>
+      </div>
+      <div class="event-detail">
+        <mat-label>Toimumisaeg:</mat-label>
+        <p>{{ event.beginTime }}</p>
+      </div>
+      <div class="event-detail">
+        <mat-label>Koht:</mat-label>
+        <p>{{ event.location }}</p>
+      </div>
+      <div>
+        <h6>Osavõtjad:</h6>
+      </div>
+      <table mat-table [dataSource]="mergedParticipants" class="mat-elevation-z8">
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let participant"> {{participant.name}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="code">
+          <th mat-header-cell *matHeaderCellDef> Code </th>
+          <td mat-cell *matCellDef="let participant"> {{participant.code}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> Actions </th>
+          <td mat-cell *matCellDef="let participant">
+            <button mat-button (click)="viewParticipant(participant)">VAATA</button>
+            <button mat-button color="warn" (click)="deleteParticipant(participant.id)">KUSTUTA</button>
+          </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card-title>Osavõtjate lisamine</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="participantForm" (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <input type="text" placeholder="Search participants" matInput [formControl]="searchControl" [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayParticipant" (optionSelected)="onParticipantSelected($event.option.value)">
+          <mat-option *ngFor="let participant of filteredParticipants | async" [value]="participant">
+            {{ displayParticipant(participant) }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Payment Type</mat-label>
+        <mat-select formControlName="paymentType">
+          <mat-option [value]="1">Cash</mat-option>
+          <mat-option [value]="2">Card</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Additional Info</mat-label>
+        <textarea matInput formControlName="additionalInfo"></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Person Count</mat-label>
+        <input matInput type="number" formControlName="personCount">
+      </mat-form-field>
+      <button mat-button (click)="back()">Tagasi</button>
+      <button mat-button type="submit">Salvesta</button>
+    </form>
+  </mat-card-content>
+</div>

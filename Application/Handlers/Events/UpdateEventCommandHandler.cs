@@ -16,6 +16,10 @@ namespace Application.Handlers.Events {
         }
 
         public async Task<Unit> Handle(UpdateEventCommand request, CancellationToken cancellationToken) {
+            if (request.BeginTime < DateTime.Now) {
+                throw new BadRequestException("Algusaeg peab olema tulevikus");
+            }
+
             var existingEvent = await _eventRepository.Get(request.EventId);
             if (existingEvent == null) {
                 throw new EntityNotFoundException(nameof(existingEvent), request.EventId);

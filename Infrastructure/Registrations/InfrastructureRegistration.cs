@@ -14,9 +14,9 @@ namespace Infrastructure.Registrations {
             services.AddScoped(typeof(IRepository<>), typeof(RepositoryBase<>));
             services.AddScoped<IEventRepository, EventRepository>();
             services.AddScoped<IBusinessParticipantRepository, BusinessParticipantRepository>();
-            services.AddScoped<IEventBusinessParticipantRepository, EventBusinessParticipantRepository>();
             services.AddScoped<IPrivateParticipantRepository, PrivateParticipantRepository>();
             services.AddScoped<IEventPrivateParticipantRepository, EventPrivateParticipantRepository>();
+            services.AddScoped<IEventBusinessParticipantRepository, EventBusinessParticipantRepository>();
             return services;
         }
     }
