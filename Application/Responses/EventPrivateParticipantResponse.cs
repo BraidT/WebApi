@@ -4,6 +4,7 @@ namespace Application.Responses {
     public class EventPrivateParticipantResponse {
         public int Id { get; set; }
         public int EventId { get; set; }
+        public int PrivateParticipantId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string PersonalCode { get; set; }

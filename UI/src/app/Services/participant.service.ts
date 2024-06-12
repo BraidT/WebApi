@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { BusinessParticipantResponse, PrivateParticipantResponse, ParticipantSearchResponse } from '../Model/ParticipantResponse';
+import { BusinessParticipantResponse, PrivateParticipantResponse, ParticipantSearchResponse, EventPrivateParticipantResponse, EventBusinessParticipantResponse } from '../Model/ParticipantResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -35,14 +35,14 @@ export class ParticipantService {
     return this.http.put(`${this.apiUrl}/participant/private`, participant);
   }
 
-  getPrivateParticipants(eventId: number):Observable<PrivateParticipantResponse[]>{
+  getPrivateParticipants(eventId: number):Observable<EventPrivateParticipantResponse[]>{
     const url = `${this.apiUrl}/participant/private/getbyevent/${eventId}`;
-    return this.http.get<PrivateParticipantResponse[]>(url);
+    return this.http.get<EventPrivateParticipantResponse[]>(url);
   }
 
-  getBusinessParticipants(eventId: number):Observable<BusinessParticipantResponse[]>{
+  getBusinessParticipants(eventId: number):Observable<EventBusinessParticipantResponse[]>{
     const url = `${this.apiUrl}/participant/business/getbyevent/${eventId}`;
-    return this.http.get<BusinessParticipantResponse[]>(url);
+    return this.http.get<EventBusinessParticipantResponse[]>(url);
   }
 
   searchParticipants(searchTerm: string): Observable<ParticipantSearchResponse> {

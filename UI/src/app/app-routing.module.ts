@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'event', component: AddEventComponent },
   { path: 'events/:eventId', component: EventParticipantsComponent },
-  { path: 'participants/:eventId/:eventParticipantId', component: EventParticipantsComponent },
+  { path: 'participants/:eventId/:eventParticipantId/:isPrivate', component: EventParticipantsComponent },
   { path: 'participants/:eventId', component: EventParticipantsComponent },
   { path: 'participant', component: AddParticipantComponent},
   { path: 'participant/:participantId/:isprivate', component: AddParticipantComponent},

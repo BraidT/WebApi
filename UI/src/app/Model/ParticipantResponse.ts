@@ -27,7 +27,8 @@ export interface BusinessParticipantResponse {
     id: number;
     eventId: number;
     privateParticipantId: number;
-    privateParticipant: PrivateParticipantResponse;
+    firstName: string;
+    lastName: string;
     personalCode: string;
     additionalInfo: string;
     paymentType: PaymentTypeEnum;
@@ -36,11 +37,11 @@ export interface BusinessParticipantResponse {
   export interface EventBusinessParticipantResponse{
     id: number;
     eventId: number;
-    businessPParticipantId: number;
-    businessPParticipant: BusinessParticipantResponse;
-    personalCode: string;
+    name: string;
+    registryCode: string;
     additionalInfo: string;
     paymentType: PaymentTypeEnum;
+    personCount: number | null;
   }
 
   export interface EventPrivateParticipantRequest{
@@ -57,5 +58,5 @@ export interface BusinessParticipantResponse {
     businessParticipantId: number;
     additionalInfo: string;
     paymentType: PaymentTypeEnum;
-    participantCount: number;
+    participantCount: number | null;
   }

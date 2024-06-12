@@ -35,32 +35,27 @@ Rakendus peab koosnema järgmistest vaadetest:
 ### Paigaldamise Juhend
 1. **Klooni Repositoorium**:
     ```sh
-    git clone <repository-url>
+    git clone https://github.com/BraidT/WebApi.git
     ```
 2. **Ava Projekt Visual Studios**:
-    - Veendu, et kasutad uusimat Visual Studio versiooni.
     - Ava lahendusfail (`.sln`).
 
 3. **Andmebaasi Seadistamine**:
-    - Loo andmebaas vastavalt andmebaasi diagrammile.
     - Konfigureeri ühendusstring (`connection string`) vastavalt andmebaasi seadele.
+    - kasuta käsku database-update andmebaasi loomiseks    
 
 4. **Rakenduse Käivitamine**:
     - Kompileeri ja käivita projekt Visual Studios.
-
-5. **Testide Käivitamine**:
-    - Käivita automaattestid, et veenduda rakenduse toimimises.
+5 **Rakenduse Käivitamine**:
+    - ava UI project Visual studio code-s
+    - kasuta käsku ng-serve, et ui osa püsti saada
 
 ### Arhitektuuri Ülevaade
 - **Kihtide Rollid**:
-    - **Esitluskiht (Presentation Layer)**: Kasutajaliidese vaated ja interaktsioonid.
-    - **Äriloogika kiht (Business Logic Layer)**: Ärilogika ja domeenimudelid.
-    - **Andmekiht (Data Layer)**: Andmebaasi haldus ja andmete salvestamine.
-
-### Kulunud Aeg
-- Kirjelda ülesande lahendamiseks kulunud aega.
-
----
+    - **Core**: Sisaldab äriloogikat ja andmebaasi objekte.
+    - **Application**: Määrab ära kasutusjuhud või teenused.
+    - **Infrastructure**: Sisaldab repode implementatsiooni .
+    - **WebApi**: Haldab API lõpp-punkte.
 
 ### Märksõnad
 - **Domeenipõhine Disain**

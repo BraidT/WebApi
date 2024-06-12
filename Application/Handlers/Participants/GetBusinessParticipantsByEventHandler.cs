@@ -2,11 +2,10 @@
 using Application.Responses;
 using AutoMapper;
 using Core.Repositories;
-using Infrastructure.Repositories;
 using MediatR;
 
 namespace Application.Handlers.Participants {
-    public class GetBusinessParticipantsByEventHandler : IRequestHandler<GetEventBusinessParticipantsQuery, List<BusinessParticipantResponse>> {
+    public class GetBusinessParticipantsByEventHandler : IRequestHandler<GetEventBusinessParticipantsQuery, List<EventBusinessParticipantResponse>> {
 
         private readonly IEventBusinessParticipantRepository _eventBusinessParticipantRepository;
         private readonly IMapper _mapper;
@@ -15,9 +14,9 @@ namespace Application.Handlers.Participants {
             _eventBusinessParticipantRepository = eventBusinessParticipantRepository;
             _mapper = mapper;
         }
-        public async Task<List<BusinessParticipantResponse>> Handle(GetEventBusinessParticipantsQuery request, CancellationToken cancellationToken) {
+        public async Task<List<EventBusinessParticipantResponse>> Handle(GetEventBusinessParticipantsQuery request, CancellationToken cancellationToken) {
             var participants = await _eventBusinessParticipantRepository.GetByEvent(request.EventId);
-            return _mapper.Map<List<BusinessParticipantResponse>>(participants);
+            return _mapper.Map<List<EventBusinessParticipantResponse>>(participants);
         }
     }
 }
